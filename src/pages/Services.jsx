@@ -4,7 +4,7 @@ import ServiceCard from '../components/ServiceCard'
 const Services = () => {
     return (
         <div>
-            <section className="py-16 px-12">
+            <section className="py-10 px-12">
                 <div className="text-center">
                     <p className="text-red-600 text-xl font-semibold">
                         OUR SERVICES
@@ -19,9 +19,9 @@ const Services = () => {
                     </p>
                 </div>
             </section>
-            <section>
+            <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-10 gap-10'>
                 {servicesData.map((item) => {
-                    return <ServiceCard key={item.id} name={item.name} description={item.description} responseTime={item.responseTime} availability={item.availability} technicianAssignment={item.technicianAssignment} rating={item.rating} price={item.price} />
+                    return <ServiceCard key={item.id} page="services" name={item.name} icon={item.icon} description={item.description} responseTime={item.responseTime} availability={item.availability} technicianAssignment={item.technicianAssignment} rating={item.rating} price={item.price} />
                 })}
             </section>
         </div>

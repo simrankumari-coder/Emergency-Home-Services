@@ -8,7 +8,7 @@ const Hero = () => {
             <div className='flex  w-full'>
                 <div className='w-1/2 px-12 py-20'>
                     <h6 className='text-sm font-semibold'>24/7 EMERGENCY HOME SERVICES</h6>
-                    <h1 className='text-5xl text-blue-950 mt-4 font-bold'>Get Help at Home , Right When You Need It.</h1>
+                    <h1 className='text-5xl text-blue-800 mt-4 font-bold'>Get Help at Home , Right When You Need It.</h1>
                     <p className='text-lg text-slate-600 mt-6'>Request a service and get connected with an availble technician near you.</p>
                     <div className="flex gap-4 mt-8">
 

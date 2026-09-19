@@ -7,10 +7,10 @@ import { useState } from 'react';
 const Navbar = () => {
     const [menu, setMenu] = useState(false)
     return (
-        <nav className='flex justify-between bg-blue-950 px-4 py-4 text-white text-[15px] font-medium '>
+        <nav className='flex justify-between bg-blue-800 px-4 py-4 text-white text-[15px] font-medium '>
             <div className='flex gap-2'>
                 <FcHome className="text-xl" />
-                <span>Emergency Home Services</span>
+                <span>EHS</span>
             </div>
             <div className="flex  gap-10">
                 <NavLink to="/">Home</NavLink>
