@@ -19,9 +19,9 @@ const Services = () => {
                     </p>
                 </div>
             </section>
-            <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 p-10 gap-10'>
+            <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-10 gap-10'>
                 {servicesData.map((item) => {
-                    return <ServiceCard key={item.id} page="services" name={item.name} icon={item.icon} description={item.description} responseTime={item.responseTime} availability={item.availability} technicianAssignment={item.technicianAssignment} rating={item.rating} price={item.price} />
+                    return <ServiceCard key={item.id} id={item.id} page="services" name={item.name} icon={item.icon} description={item.description} responseTime={item.responseTime} availability={item.availability} technicianAssignment={item.technicianAssignment} rating={item.rating} price={item.price} />
                 })}
             </section>
         </div>

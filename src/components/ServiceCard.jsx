@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router';
 import { FaArrowRightLong } from "react-icons/fa6";
 const ServiceCard = ({ id, name, icon, page, description, responseTime, availability, technicianAssignment, rating, price }) => {
     const Icon = icon
@@ -114,9 +115,9 @@ const ServiceCard = ({ id, name, icon, page, description, responseTime, availabi
                     </p>
                 </div>
 
-                <button className="px-5 py-2.5 bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition">
+                <Link to={`/services/${id}`}><button className="px-5 py-2.5 bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition">
                     View Service
-                </button>
+                </button></Link>
             </div>
         </div>)
     }

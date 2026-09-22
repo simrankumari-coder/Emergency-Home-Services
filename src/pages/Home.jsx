@@ -6,7 +6,7 @@ import ServiceCard from '../components/ServiceCard'
 
 const Home = () => {
     return (
-        <div>
+        <div className='flex-1'>
             <Hero />
             <section className="py-10 px-12">
                 <div className="text-center">
@@ -14,7 +14,7 @@ const Home = () => {
                         OUR SERVICES
                     </p>
 
-                    <h2 className="text-3xl font-bold text-slate-900 mt-2">
+                    <h2 className="text-xl md:text-3xl font-bold text-slate-900 mt-2">
                         Get Emergency Help When You Need It Most
                     </h2>
 
@@ -32,7 +32,7 @@ const Home = () => {
                         WHY CHOOSE US
                     </p>
 
-                    <h2 className="text-3xl font-bold text-slate-900 mt-2">
+                    <h2 className="text-xl md:text-3xl font-bold text-slate-900 mt-2">
                         Why Choose Our Emergency Services?
                     </h2>
 
@@ -111,7 +111,7 @@ const Home = () => {
                         HOW IT WORKS
                     </p>
 
-                    <h2 className="text-3xl font-bold text-slate-900 mt-2">
+                    <h2 className="text-xl md:text-3xl font-bold text-slate-900 mt-2">
                         How Our Emergency Service Works
                     </h2>
 
@@ -186,7 +186,7 @@ const Home = () => {
             </section>
             <section>
                 <div className="text-center p-4 flex flex-col items-center justify-center mx-auto  bg-gray-50">
-                    <h1 className='text-3xl font-bold text-slate-900 mt-2'>Need Emergency Help right now </h1>
+                    <h1 className='text-xl md:text-3xl font-bold text-slate-900 mt-2'>Need Emergency Help right now </h1>
                     <p className="text-sm text-gray-600 leading-6">Request a service and get the available help right now</p>
                     <button className="px-5 py-2.5 flex gap-2 justify-center items-center bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition mt-4">Request Emergency Help < FaArrowRightLong className='text-center mt-1' /></button>
                 </div>
