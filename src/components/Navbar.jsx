@@ -15,8 +15,8 @@ const Navbar = () => {
             <div className="flex  gap-10">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/services">Services</NavLink>
-                <NavLink to="/emergencyRequest">Emergency Request</NavLink>
-                <NavLink to="/trackService">Track Service</NavLink>
+                <NavLink to="/request-service">Emergency Request</NavLink>
+                <NavLink to="/track-service">Track Service</NavLink>
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/login">Login</NavLink>
                 <NavLink to="/signUp">Sign Up</NavLink>
