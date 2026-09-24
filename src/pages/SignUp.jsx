@@ -5,12 +5,32 @@ const Signup = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
-    const [password, setPassword] = useState(second)
+    const [password, setPassword] = useState("")
+    const [confirmPass, setConfirmPass] = useState("")
+    // useEffect(() => {
+    //     localStorage.getItem("userInfo")
+    // }, [])
 
-    useEffect(() => {
+    const handleClick = (e) => {
+        e.preventDefault()
+        if (name === "" && email === "" && password === "" && phone === "" && confirmPass) {
+            return;
+        } else {
 
-    }, [])
+            const signUpData = {
+                name: name,
+                email: email,
+                phone: phone,
+                password: password
 
+            }
+
+
+            localStorage.setItem("userInfo", JSON.stringify(signUpData))
+        }
+
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-12">
@@ -32,7 +52,7 @@ const Signup = () => {
                 </div>
 
                 {/* Form */}
-                <form className="mt-8 space-y-5">
+                <form className="mt-8 space-y-5" onSubmit={handleClick}>
 
                     {/* Name */}
                     <div>
@@ -45,6 +65,7 @@ const Signup = () => {
                             placeholder="Enter your full name"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
+                        {(name.length > 0 && name.length < 2) && <p className="text-sm text-red-500 mt-1">Username can't be less than two characters</p>}
                     </div>
 
                     {/* Email */}
@@ -58,6 +79,7 @@ const Signup = () => {
                             placeholder="Enter your email"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
+                        {(email.length > 0 && !emailRegex.test(email)) && <p className="text-sm text-red-500 mt-1">Email should contain @ and . characters</p>}
                     </div>
 
                     {/* Phone */}
@@ -71,6 +93,7 @@ const Signup = () => {
                             placeholder="Enter your phone number"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
+                        {(phone > 0 && phone.length !== 10) && <p className="text-sm text-red-500 mt-1">Phone number should be correct</p>}
                     </div>
 
                     {/* Password */}
@@ -84,6 +107,7 @@ const Signup = () => {
                             placeholder="Create a password"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
+                        {(password.length > 0 && password.length > 6) && <p className="text-sm text-red-500 mt-1">Password should be contain six characters</p>}
                     </div>
 
                     {/* Confirm Password */}
@@ -92,11 +116,12 @@ const Signup = () => {
                             Confirm Password
                         </label>
 
-                        <input
+                        <input value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)}
                             type="password"
                             placeholder="Confirm your password"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
+                        {(confirmPass.length > 0 && confirmPass.length !== password.length) && <p className="text-sm text-red-500 mt-1">Password didn't match</p>}
                     </div>
 
                     {/* Sign Up */}

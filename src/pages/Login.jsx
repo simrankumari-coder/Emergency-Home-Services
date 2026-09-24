@@ -1,7 +1,20 @@
 import React from "react";
 import { Link } from "react-router";
-
+import { useState } from "react";
 const Login = () => {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const userInfo = localStorage.getItem("userInfo")
+    const user = JSON.parse(userInfo)
+
+    const handleClick = (e) => {
+        e.preventDefault();
+
+        if (email === "" && password === "") {
+            return;
+        }
+        console.log("continue login")
+    }
     return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-12">
             <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
@@ -22,7 +35,7 @@ const Login = () => {
                 </div>
 
                 {/* Form */}
-                <form className="mt-8 space-y-5">
+                <form className="mt-8 space-y-5" onSubmit={handleClick}>
 
                     {/* Email */}
                     <div>
@@ -30,11 +43,12 @@ const Login = () => {
                             Email Address
                         </label>
 
-                        <input
+                        <input value={email} onChange={(e) => setEmail(e.target.value)}
                             type="email"
                             placeholder="Enter your email"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
+                        {(email.length > 0 && user.email !== email) && <p>Email are not correct</p>}
                     </div>
 
                     {/* Password */}
@@ -43,11 +57,12 @@ const Login = () => {
                             Password
                         </label>
 
-                        <input
+                        <input value={password} onChange={(e) => setPassword(e.target.value)}
                             type="password"
                             placeholder="Enter your password"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
+                        {(password.length > 0 && user.password !== password) && <p>Password didn't match</p>}
                     </div>
 
                     {/* Forgot Password */}
