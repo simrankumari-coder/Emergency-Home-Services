@@ -1,19 +1,19 @@
 import React from "react";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 const Signup = () => {
+    const navigate = useNavigate()
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPass, setConfirmPass] = useState("")
-    // useEffect(() => {
-    //     localStorage.getItem("userInfo")
-    // }, [])
+
 
     const handleClick = (e) => {
         e.preventDefault()
-        if (name === "" && email === "" && password === "" && phone === "" && confirmPass) {
+        if (name === "" || email === "" || password === "" || phone === "" || confirmPass === "") {
             return;
         } else {
 
@@ -27,7 +27,13 @@ const Signup = () => {
 
 
             localStorage.setItem("userInfo", JSON.stringify(signUpData))
+            setName("")
+            setEmail("")
+            setPhone("")
+            setPassword("")
+            setConfirmPass("")
         }
+        navigate("/login")
 
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

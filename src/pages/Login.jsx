@@ -1,19 +1,32 @@
 import React from "react";
 import { Link } from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 const Login = () => {
+    const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [loginError, setLoginError] = useState(false)
     const userInfo = localStorage.getItem("userInfo")
     const user = JSON.parse(userInfo)
 
     const handleClick = (e) => {
         e.preventDefault();
 
-        if (email === "" && password === "") {
+        if (email === "" || password === "") {
             return;
+        } else {
+
+            console.log("continue login")
+            setEmail("")
+            setPassword("")
+            if (email === user.email && password === user.password) {
+                localStorage.setItem("isLoggedIn", "true")
+                navigate("/")
+            } else {
+                setLoginError(true)
+            }
         }
-        console.log("continue login")
     }
     return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-12">
@@ -43,12 +56,15 @@ const Login = () => {
                             Email Address
                         </label>
 
-                        <input value={email} onChange={(e) => setEmail(e.target.value)}
+                        <input value={email} onChange={(e) => {
+                            setEmail(e.target.value)
+                            setLoginError(false)
+                        }}
                             type="email"
                             placeholder="Enter your email"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
-                        {(email.length > 0 && user.email !== email) && <p>Email are not correct</p>}
+                        {(email.length > 0 && user.email !== email) && <p className="text-sm text-red-500 mt-1">Email is not correct</p>}
                     </div>
 
                     {/* Password */}
@@ -57,12 +73,15 @@ const Login = () => {
                             Password
                         </label>
 
-                        <input value={password} onChange={(e) => setPassword(e.target.value)}
+                        <input value={password} onChange={(e) => {
+                            setPassword(e.target.value)
+                            setLoginError(false)
+                        }}
                             type="password"
                             placeholder="Enter your password"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
-                        {(password.length > 0 && user.password !== password) && <p>Password didn't match</p>}
+                        {(password.length > 0 && user.password !== password) && <p className="text-sm text-red-500 mt-1">Password didn't match</p>}
                     </div>
 
                     {/* Forgot Password */}
@@ -82,7 +101,7 @@ const Login = () => {
                     >
                         Login →
                     </button>
-
+                    {loginError && <p className="text-sm text-red-500 mt-1">Email or Password are not correct</p>}
                 </form>
 
                 {/* Sign Up */}
