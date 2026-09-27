@@ -1,6 +1,46 @@
 import React from "react";
+import { useState } from "react";
+import technicians from "../data/technician";
+import { useNavigate } from "react-router";
 
 const EmergencyRequest = () => {
+    const [service, setService] = useState("")
+    const [problem, setProblem] = useState("")
+    const [name, setName] = useState("")
+    const [phone, setPhone] = useState("")
+    const [address, setAddress] = useState("")
+    const [emergencyLevel, setEmergencyLevel] = useState("")
+    const navigate = useNavigate()
+    const handleClick = () => {
+        console.log(service, problem, name, phone, address, emergencyLevel)
+        if (service === "" || problem === "" || name === "" || phone === "" || address === "" || emergencyLevel === "") {
+            return
+        } else {
+            const emergencyRequest = {
+                service: service,
+                problem: problem,
+                name: name,
+                phone: phone,
+                address: address,
+                emergencyLevel: emergencyLevel
+            }
+            console.log(technicians.find((item) => {
+                return service === item.service && item.available === true
+            }))
+            const technician = technicians.find((item) => {
+                return service === item.service && item.available === true
+            })
+            const finalResult = { ...emergencyRequest, technician }
+            localStorage.setItem("finalResult", JSON.stringify(finalResult))
+            setService("")
+            setProblem("")
+            setName("")
+            setPhone("")
+            setAddress("")
+            setEmergencyLevel("")
+            navigate("/track-service")
+        }
+    }
     return (
         <div className="min-h-screen bg-gray-50 py-16 px-6">
             <div className="max-w-4xl mx-auto">
@@ -30,19 +70,20 @@ const EmergencyRequest = () => {
                             Service Type
                         </label>
 
-                        <select className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-600 outline-none focus:border-blue-500">
-                            <option>Select a service</option>
-                            <option>Plumbing</option>
-                            <option>Electrical</option>
-                            <option>AC Repair</option>
-                            <option>Appliance Repair</option>
-                            <option>Locksmith</option>
-                            <option>Home Repair</option>
-                            <option>Glass & Window Repair</option>
-                            <option>Gas & Stove Service</option>
-                            <option>Water Heater Repair</option>
-                            <option>Emergency Cleaning</option>
+                        <select value={service} onChange={(e) => setService(e.target.value)} className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-600 outline-none focus:border-blue-500">
+                            <option value={""}> Select a service</option>
+                            <option value={"Plumbing"}> Plumbing</option>
+                            <option value={"Electrical"}> Electrical</option>
+                            <option value={"AC Repair"}> AC Repair</option>
+                            <option value={"Appliance Repair"}> Appliance Repair</option>
+                            <option value={"Locksmith"}> Locksmith</option>
+                            <option value={"Home Repair"}> Home Repair</option>
+                            <option value={"Glass & Window Repair"}> Glass & Window Repair</option>
+                            <option value={"Gas & Stove Service"}> Gas & Stove Service</option>
+                            <option value={"Water Heater Repair"}> Water Heater Repair</option>
+                            <option value={"Emergency Cleaning"}> Emergency Cleaning</option>
                         </select>
+
                     </div>
 
                     {/* Problem */}
@@ -51,7 +92,7 @@ const EmergencyRequest = () => {
                             Describe the Problem
                         </label>
 
-                        <textarea
+                        <textarea value={problem} onChange={(e) => setProblem(e.target.value)}
                             rows="4"
                             placeholder="Briefly describe what happened..."
                             className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none resize-none focus:border-blue-500"
@@ -66,11 +107,13 @@ const EmergencyRequest = () => {
                                 Your Name
                             </label>
 
-                            <input
+                            <input value={name} onChange={(e) => setName(e.target.value)}
                                 type="text"
                                 placeholder="Enter your name"
                                 className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-blue-500"
                             />
+                            {(name.length > 0 && name.length < 2) && <p className="text-
+                            sm text-red-500 mt-1">Username can't be less than two characters</p>}
                         </div>
 
                         <div>
@@ -78,11 +121,12 @@ const EmergencyRequest = () => {
                                 Phone Number
                             </label>
 
-                            <input
+                            <input value={phone} onChange={(e) => setPhone(e.target.value)}
                                 type="tel"
                                 placeholder="Enter phone number"
                                 className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-blue-500"
                             />
+                            {(phone > 0 && phone.length !== 10) && <p className="text-sm text-red-500 mt-1">Phone number should be correct</p>}
                         </div>
 
                     </div>
@@ -93,7 +137,7 @@ const EmergencyRequest = () => {
                             Service Address
                         </label>
 
-                        <input
+                        <input value={address} onChange={(e) => setAddress(e.target.value)}
                             type="text"
                             placeholder="Enter your complete address"
                             className="w-full border border-gray-300 rounded-xl px-4 py-3 outline-none focus:border-blue-500"
@@ -109,7 +153,7 @@ const EmergencyRequest = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
                             <label className="border border-gray-300 rounded-xl p-4 cursor-pointer hover:border-blue-500">
-                                <input
+                                <input value="Emergency" onChange={(e) => setEmergencyLevel(e.target.value)}
                                     type="radio"
                                     name="priority"
                                     className="mr-3"
@@ -123,7 +167,7 @@ const EmergencyRequest = () => {
                             </label>
 
                             <label className="border border-gray-300 rounded-xl p-4 cursor-pointer hover:border-blue-500">
-                                <input
+                                <input value="Urgent" onChange={(e) => setEmergencyLevel(e.target.value)}
                                     type="radio"
                                     name="priority"
                                     className="mr-3"
@@ -140,8 +184,8 @@ const EmergencyRequest = () => {
                     </div>
 
                     {/* Button */}
-                    <button
-                        type="button"
+                    <button onClick={handleClick}
+                        type="submit"
                         className="w-full bg-blue-600 text-white py-3.5 rounded-xl font-semibold hover:bg-blue-700 transition"
                     >
                         Find a Technician →

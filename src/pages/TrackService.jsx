@@ -3,6 +3,9 @@ import { FaUser } from "react-icons/fa";
 import { FaLocationDot, FaCircleCheck } from "react-icons/fa6";
 
 const TrackService = () => {
+    const technicianData = localStorage.getItem("finalResult")
+    const technician = JSON.parse(technicianData)
+    console.log(technician)
     return (
         <div className="min-h-screen bg-gray-50 py-16 px-6">
 
@@ -32,7 +35,7 @@ const TrackService = () => {
                         </span>
 
                         <span className="text-gray-600">
-                            #EHS1024
+                            {technician.technician.id}
                         </span>
                     </div>
 
@@ -62,7 +65,7 @@ const TrackService = () => {
                     </span>
 
                     <span className="text-gray-600">
-                        Plumbing
+                        {technician.technician.service}
                     </span>
                 </div>
 
@@ -76,7 +79,7 @@ const TrackService = () => {
                     </span>
 
                     <span className="text-gray-600">
-                        20 min
+                        {technician.technician.responseTime}
                     </span>
                 </div>
 
@@ -99,17 +102,17 @@ const TrackService = () => {
 
                         <div>
                             <div className="flex items-center gap-2">
-                                <span className="text-lg font-semibold text-slate-900">
-                                    Raj Kumar
+                                <span className=" text-md md:text-lg font-semibold text-slate-900">
+                                    {technician.technician.name}
                                 </span>
 
                                 <span className="text-gray-600">
-                                    ★ 4.8
+                                    ⭐{technician.technician.rating}
                                 </span>
                             </div>
 
                             <p className="text-gray-500 text-sm">
-                                Plumbing Technician
+                                {technician.technician.service} Technician
                             </p>
                         </div>
 
@@ -196,7 +199,7 @@ const TrackService = () => {
 
                     <div>
                         <h3 className="font-semibold text-slate-900">
-                            Your Service Address
+                            {technician.address}
                         </h3>
 
                         <p className="text-sm text-gray-500">
