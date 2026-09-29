@@ -6,6 +6,7 @@ import EmergencyRequest from './pages/EmergencyRequest'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import Footer from './components/Footer'
+import Profile from './pages/Profile'
 import Services from './pages/Services'
 import TrackService from './pages/TrackService'
 import ServiceDetail from './pages/ServiceDetail'
@@ -23,6 +24,7 @@ function App() {
         <Route path="/track-service" element={<TrackService />} />
         <Route path="/about" element={<About />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />

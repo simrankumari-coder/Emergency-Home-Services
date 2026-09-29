@@ -118,10 +118,7 @@ const TrackService = () => {
 
                     </div>
 
-                    <button className="mt-5 px-5 py-2.5 bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition">
-                        Contact Technician
-                    </button>
-
+                    <a href="tel:98XXXXXX10" className="mt-5 inline-block px-5 py-2.5 bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition" >Contact Technician</a>
                 </div>
 
             </div>
@@ -209,12 +206,7 @@ const TrackService = () => {
 
                 </div>
 
-                {/* Map Placeholder */}
-                <div className="h-40 bg-gray-100 rounded-xl mt-5 flex items-center justify-center">
-                    <span className="text-gray-400">
-                        Map will appear here
-                    </span>
-                </div>
+
 
             </div>
 

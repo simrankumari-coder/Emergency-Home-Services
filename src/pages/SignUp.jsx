@@ -9,6 +9,7 @@ const Signup = () => {
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPass, setConfirmPass] = useState("")
+    const [dob, setDob] = useState("")
 
 
     const handleClick = (e) => {
@@ -21,7 +22,8 @@ const Signup = () => {
                 name: name,
                 email: email,
                 phone: phone,
-                password: password
+                password: password,
+                dob: dob
 
             }
 
@@ -31,6 +33,7 @@ const Signup = () => {
             setEmail("")
             setPhone("")
             setPassword("")
+            setDob("")
             setConfirmPass("")
         }
         navigate("/login")
@@ -102,6 +105,16 @@ const Signup = () => {
                         {(phone > 0 && phone.length !== 10) && <p className="text-sm text-red-500 mt-1">Phone number should be correct</p>}
                     </div>
 
+                    {/* {DOB} */}
+                    {/* Phone */}
+                    <div>
+                        <label className="block text-sm font-medium text-slate-900 mb-2">
+                            Phone Number
+                        </label>
+                        <input value={dob} onChange={(e) => setDob(e.target.value)}
+                            type="date"
+                            className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600" />
+                    </div>
                     {/* Password */}
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">

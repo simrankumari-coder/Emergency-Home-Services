@@ -11,8 +11,11 @@ const EmergencyRequest = () => {
     const [address, setAddress] = useState("")
     const [emergencyLevel, setEmergencyLevel] = useState("")
     const navigate = useNavigate()
+    const storedRequest = localStorage.getItem("storeRequest")
+    let serviceRequests = storedRequest ? JSON.parse(storedRequest) : [];
     const handleClick = () => {
-        console.log(service, problem, name, phone, address, emergencyLevel)
+
+
         if (service === "" || problem === "" || name === "" || phone === "" || address === "" || emergencyLevel === "") {
             return
         } else {
@@ -40,6 +43,8 @@ const EmergencyRequest = () => {
             setEmergencyLevel("")
             navigate("/track-service")
         }
+        serviceRequests.push(finalResult)
+        localStorage.setItem("storeRequest", JSON.stringify(serviceRequests))
     }
     return (
         <div className="min-h-screen bg-gray-50 py-16 px-6">

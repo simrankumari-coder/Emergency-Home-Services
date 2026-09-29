@@ -20,6 +20,7 @@ const Navbar = () => {
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/login">Login</NavLink>
                 <NavLink to="/signup">Sign Up</NavLink>
+                <NavLink to="/profile">Profile</NavLink>
             </div>
             {/* {menu ? <button onClick={setMenu(!menu)} ><GiHamburgerMenu /></button> : <button onClick={setMenu(false)}><ImCross /></button>} */}
         </nav>
