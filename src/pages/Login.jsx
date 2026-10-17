@@ -2,17 +2,20 @@ import React from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-const Login = () => {
+const Login = ({ isLogin, setIsLogin }) => {
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loginError, setLoginError] = useState(false)
     const userInfo = localStorage.getItem("userInfo")
-    const user = JSON.parse(userInfo)
+    const user = userInfo ? JSON.parse(userInfo) : null;
 
     const handleClick = (e) => {
         e.preventDefault();
-
+        if (!user) {
+            setLoginError(true)
+            return;
+        }
         if (email === "" || password === "") {
             return;
         } else {
@@ -22,7 +25,8 @@ const Login = () => {
             setPassword("")
             if (email === user.email && password === user.password) {
                 localStorage.setItem("isLoggedIn", "true")
-                navigate("/")
+                setIsLogin(true)
+                navigate("/profile")
             } else {
                 setLoginError(true)
             }
@@ -101,7 +105,7 @@ const Login = () => {
                     >
                         Login →
                     </button>
-                    {loginError && <p className="text-sm text-red-500 mt-1">Email or Password are not correct</p>}
+                    {loginError && <p className="text-sm text-red-500 mt-1">Please Sign Up First</p>}
                 </form>
 
                 {/* Sign Up */}

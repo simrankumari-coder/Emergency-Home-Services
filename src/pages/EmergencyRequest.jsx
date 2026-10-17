@@ -27,14 +27,15 @@ const EmergencyRequest = () => {
                 address: address,
                 emergencyLevel: emergencyLevel
             }
-            console.log(technicians.find((item) => {
-                return service === item.service && item.available === true
-            }))
+
             const technician = technicians.find((item) => {
                 return service === item.service && item.available === true
             })
+
             const finalResult = { ...emergencyRequest, technician }
             localStorage.setItem("finalResult", JSON.stringify(finalResult))
+            serviceRequests.push(finalResult)
+            localStorage.setItem("storeRequest", JSON.stringify(serviceRequests))
             setService("")
             setProblem("")
             setName("")
@@ -43,8 +44,6 @@ const EmergencyRequest = () => {
             setEmergencyLevel("")
             navigate("/track-service")
         }
-        serviceRequests.push(finalResult)
-        localStorage.setItem("storeRequest", JSON.stringify(serviceRequests))
     }
     return (
         <div className="min-h-screen bg-gray-50 py-16 px-6">

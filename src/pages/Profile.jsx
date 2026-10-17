@@ -1,10 +1,37 @@
 import React from "react";
 import { FaUser, FaEnvelope, FaPhone, FaClipboardList, FaCircleCheck } from "react-icons/fa6";
+import { Navigate, useNavigate } from "react-router";
 
-const Profile = () => {
+const Profile = ({ isLogin, setIsLogin }) => {
+    const navigate = useNavigate();
+    const storedRequest = localStorage.getItem("storeRequest")
+    let serviceRequests = storedRequest ? JSON.parse(storedRequest) : [];
+
     const userInfo = localStorage.getItem("userInfo")
-    const user = JSON.parse(userInfo)
-    console.log(user)
+    const user = userInfo ? JSON.parse(userInfo) : {}
+
+    localStorage.getItem("isLoggedIn")
+    console.log(serviceRequests)
+
+    const handleLogout = () => {
+        localStorage.removeItem("isLoggedIn")
+        setIsLogin(false)
+        navigate("/login")
+    }
+
+    const handleDeleteAccount = () => {
+        const confirmDelete = window.confirm("Are you sure you want to delete your account ?")
+
+        if (confirmDelete) {
+            localStorage.removeItem("isLoggedIn")
+            localStorage.removeItem("userInfo")
+            localStorage.removeItem("storeRequest")
+            setIsLogin(false)
+            navigate("/signup")
+
+        }
+    }
+
     return (
         <div className="min-h-screen bg-gray-50 py-16 px-6">
 
@@ -52,7 +79,7 @@ const Profile = () => {
                                 <FaEnvelope className="text-blue-600" />
                             </div>
 
-                            <div>
+                            <div className="truncate">
                                 <p className="text-sm text-gray-500">Email Address</p>
                                 <p className="font-semibold text-slate-900">
                                     {user.email}
@@ -105,22 +132,82 @@ const Profile = () => {
                             <FaCircleCheck className="text-green-500 text-xl" />
 
                             <p className="text-sm text-gray-500 mt-3">
-                                Completed Services
+                                Services Requested
                             </p>
 
                             <p className="text-2xl font-bold text-slate-900 mt-1">
-                                3
+                                {serviceRequests.length}
                             </p>
                         </div>
 
                     </div>
                 </div>
 
+                {/* mt requests */}
+                <div className="max-w-4xl mx-auto mt-6">
+                    <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                        <h2 className="text-xl font-semibold text-slate-900">
+                            My Service Requests
+                        </h2>
+
+                        <div className="mt-5 space-y-4">
+                            {serviceRequests.map((request, index) => (
+                                <div
+                                    key={index}
+                                    className="border border-gray-200 rounded-xl p-4"
+                                >
+                                    <h3 className="font-semibold text-slate-900">
+                                        {request.service}
+                                    </h3>
+
+                                    <p className="text-sm text-gray-600 mt-1">
+                                        Priority: {request.emergencyLevel}
+                                    </p>
+
+                                    <p className="text-sm text-gray-600">
+                                        Problem: {request.problem}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
                 {/* Logout */}
-                <div className="flex justify-end">
-                    <button className="px-6 py-3 border border-red-300 text-red-600 rounded-lg font-medium hover:bg-red-50 transition">
-                        Logout
-                    </button>
+                {/* Account Actions */}
+                <div className="max-w-4xl mx-auto mt-6">
+                    <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+
+                        <h2 className="text-xl font-semibold text-slate-900">
+                            Account Actions
+                        </h2>
+
+                        <button onClick={handleLogout}
+                            className="mt-5 px-5 py-2.5 border border-gray-300 rounded-lg
+                 text-slate-700 font-medium hover:bg-gray-100 transition"
+                        >
+                            Logout
+                        </button>
+
+                        {/* Danger Zone */}
+                        <div className="mt-6 pt-5 border-t border-gray-200">
+                            <h3 className="font-semibold text-red-600">
+                                Danger Zone
+                            </h3>
+
+                            <p className="text-sm text-gray-500 mt-1">
+                                Delete your account and all saved information.
+                            </p>
+
+                            <button onClick={handleDeleteAccount}
+                                className="mt-4 px-5 py-2.5 bg-red-600 text-white
+                   rounded-lg font-medium hover:bg-red-700 transition"
+                            >
+                                Delete Account
+                            </button>
+                        </div>
+
+                    </div>
                 </div>
 
             </div>

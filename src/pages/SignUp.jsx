@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
-const Signup = () => {
+const Signup = ({ }) => {
     const navigate = useNavigate()
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
@@ -35,6 +35,7 @@ const Signup = () => {
             setPassword("")
             setDob("")
             setConfirmPass("")
+
         }
         navigate("/login")
 

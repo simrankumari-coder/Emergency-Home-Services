@@ -13,9 +13,10 @@ import ServiceDetail from './pages/ServiceDetail'
 import Navbar from './components/Navbar'
 
 function App() {
+  const [isLogin, setIsLogin] = useState(localStorage.getItem("isLoggedIn") === "true")
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <Navbar isLogin={isLogin} setIsLogin={setIsLogin} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/services' element={<Services />} />
@@ -24,8 +25,8 @@ function App() {
         <Route path="/track-service" element={<TrackService />} />
         <Route path="/about" element={<About />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="profile" element={<Profile isLogin={isLogin} setIsLogin={setIsLogin} />} />
+        <Route path="/login" element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />} />
       </Routes>
       <Footer />
 
