@@ -1,11 +1,12 @@
 import React from "react";
 import { FaUser } from "react-icons/fa";
 import { FaLocationDot, FaCircleCheck } from "react-icons/fa6";
-
+import { useState } from "react";
 const TrackService = () => {
+    const [showContactMessage, setshowContactMessage] = useState(false)
     const technicianData = localStorage.getItem("finalResult")
     const technician = JSON.parse(technicianData)
-    console.log(technician)
+
     return (
         <div className="min-h-screen bg-gray-50 py-16 px-6">
 
@@ -118,7 +119,16 @@ const TrackService = () => {
 
                     </div>
 
-                    <a href="tel:98XXXXXX10" className="mt-5 inline-block px-5 py-2.5 bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition" >Contact Technician</a>
+                    <button onClick={() => setshowContactMessage(true)} className="mt-5 inline-block px-5 py-2.5 bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition" >Contact Technician</button>
+                    {showContactMessage && (
+                        <div className="fixed inset-0 z-50  fle just item bg-black/50">
+                            <div className="w-80 rounded-xl bg-white p-6 text-center shadow-lg">
+                                <h2 className="mb-3 text-xl font text-gray-800">Contact Unavailable</h2>
+                                <p className="mb-5 text-gray-600">Technician Contact Details are currently unavailable</p>
+                                <button onClick={() => setshowContactMessage(false)} className="rounded-lg  bg-blue-600 px-5 py-2 text-white hover:bg-blue-700">Close</button>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
             </div>

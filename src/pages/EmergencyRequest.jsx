@@ -2,9 +2,12 @@ import React from "react";
 import { useState } from "react";
 import technicians from "../data/technician";
 import { useNavigate } from "react-router";
+import { useSearchParams } from "react-router";
 
 const EmergencyRequest = () => {
-    const [service, setService] = useState("")
+    const [searchParams] = useSearchParams();
+    const selectedService = searchParams.get("service")
+    const [service, setService] = useState(selectedService || "")
     const [problem, setProblem] = useState("")
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
@@ -16,7 +19,7 @@ const EmergencyRequest = () => {
     const handleClick = () => {
 
 
-        if (service === "" || problem === "" || name === "" || phone === "" || address === "" || emergencyLevel === "") {
+        if (service === "" || problem === "" || name === "" || phone === "" || address === "" || emergencyLevel === "" || name.length < 2 || phone.length !== 10) {
             return
         } else {
             const emergencyRequest = {
@@ -74,7 +77,7 @@ const EmergencyRequest = () => {
                             Service Type
                         </label>
 
-                        <select value={service} onChange={(e) => setService(e.target.value)} className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-600 outline-none focus:border-blue-500">
+                        <select value={service} onChange={(e) => setService(e.target.value)} className="w-full border border-gray-300 rounded-xl px-4 py-3 text-gray-600 outline-none focus:border-blue-500" disabled={selectedService ? true : false} >
                             <option value={""}> Select a service</option>
                             <option value={"Plumbing"}> Plumbing</option>
                             <option value={"Electrical"}> Electrical</option>

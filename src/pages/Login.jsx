@@ -20,7 +20,7 @@ const Login = ({ isLogin, setIsLogin }) => {
             return;
         } else {
 
-            console.log("continue login")
+
             setEmail("")
             setPassword("")
             if (email === user.email && password === user.password) {
@@ -68,7 +68,7 @@ const Login = ({ isLogin, setIsLogin }) => {
                             placeholder="Enter your email"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
-                        {(email.length > 0 && user.email !== email) && <p className="text-sm text-red-500 mt-1">Email is not correct</p>}
+                        {(user && email.length > 0 && user.email !== email) && <p className="text-sm text-red-500 mt-1">Email is not correct</p>}
                     </div>
 
                     {/* Password */}
@@ -85,7 +85,7 @@ const Login = ({ isLogin, setIsLogin }) => {
                             placeholder="Enter your password"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
-                        {(password.length > 0 && user.password !== password) && <p className="text-sm text-red-500 mt-1">Password didn't match</p>}
+                        {(user && password.length > 0 && user.password !== password) && <p className="text-sm text-red-500 mt-1">Password didn't match</p>}
                     </div>
 
                     {/* Forgot Password */}

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router'
 import bgImage from "../assets/bg.jpg"
 const Hero = () => {
     return (
@@ -12,8 +12,13 @@ const Hero = () => {
                     <p className='lg:text-lg text-sm text-slate-600 mt-6'>Request a service and get connected with an availble technician near you.</p>
                     <div className="flex flex-col lg:flex-row gap-4 mt-8">
 
-                        <button className='bg-red-600 text-white px-6 py-3 rounded-lg'>Request Emergency Service</button>
-                        <button className='border border-slate-400 text-slate-700 px-6 py-3 rounded-lg'>Track the Service</button>
+                        <Link to="request-service">
+
+                            <button className='bg-red-600 text-white px-6 py-3 rounded-lg'>Request Emergency Service</button>
+                        </Link>
+                        <Link to="track-service">
+                            <button className='border border-slate-400 text-slate-700 px-6 py-3 rounded-lg'>Track the Service</button>
+                        </Link>
                     </div>
                 </div>
                 <div className=' w-full md:w-1/2  md:px-12 md:py-20 px-6 py-6 '>

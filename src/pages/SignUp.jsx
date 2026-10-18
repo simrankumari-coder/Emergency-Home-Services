@@ -14,7 +14,7 @@ const Signup = ({ }) => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        if (name === "" || email === "" || password === "" || phone === "" || confirmPass === "") {
+        if (name.trim().length < 2 || !emailRegex.test(email) || password.length < 6 || phone.length !== 10 || confirmPass !== password) {
             return;
         } else {
 
@@ -103,14 +103,14 @@ const Signup = ({ }) => {
                             placeholder="Enter your phone number"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
-                        {(phone > 0 && phone.length !== 10) && <p className="text-sm text-red-500 mt-1">Phone number should be correct</p>}
+                        {(phone.length > 0 && phone.length !== 10) && <p className="text-sm text-red-500 mt-1">Phone number should be correct</p>}
                     </div>
 
                     {/* {DOB} */}
                     {/* Phone */}
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">
-                            Phone Number
+                            Date Of Birth
                         </label>
                         <input value={dob} onChange={(e) => setDob(e.target.value)}
                             type="date"
@@ -127,7 +127,7 @@ const Signup = ({ }) => {
                             placeholder="Create a password"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
-                        {(password.length > 0 && password.length > 6) && <p className="text-sm text-red-500 mt-1">Password should be contain six characters</p>}
+                        {(password.length > 0 && password.length !== 6) && <p className="text-sm text-red-500 mt-1">Password should be contain six characters</p>}
                     </div>
 
                     {/* Confirm Password */}
@@ -141,12 +141,23 @@ const Signup = ({ }) => {
                             placeholder="Confirm your password"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
-                        {(confirmPass.length > 0 && confirmPass.length !== password.length) && <p className="text-sm text-red-500 mt-1">Password didn't match</p>}
+                        {confirmPass.length > 0 && confirmPass !== password && (<p className="text-sm text-red-500 mt-1">Password didn't match</p>)}
                     </div>
 
                     {/* Sign Up */}
                     <button
                         type="submit"
+                        disabled={
+                            !name.trim() ||
+                            name.trim().length < 2 ||
+                            !email ||
+                            !emailRegex.test(email) ||
+                            !phone ||
+                            password.length < 6 ||
+                            phone.length !== 10 ||
+                            !confirmPass ||
+                            confirmPass !== password
+                        }
                         className="w-full bg-blue-800 text-white py-3 rounded-lg font-semibold hover:bg-blue-900 transition"
                     >
                         Create Account →
@@ -155,7 +166,9 @@ const Signup = ({ }) => {
                 </form>
 
                 {/* Login */}
-                <p className="text-center text-sm text-gray-600 mt-6">
+                <p className="text-center text-sm text-gray-600 mt-6"
+
+                >
                     Already have an account?{" "}
                     <Link
                         to="/login"
@@ -166,7 +179,7 @@ const Signup = ({ }) => {
                 </p>
 
             </div>
-        </div>
+        </div >
     );
 };
 

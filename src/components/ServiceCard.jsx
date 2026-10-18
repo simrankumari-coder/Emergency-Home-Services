@@ -36,12 +36,11 @@ const ServiceCard = ({ id, name, icon, page, description, responseTime, availabi
 
                     <div className="flex justify-between items-center">
 
-
-                        {/* </div> */}
-
-                        <button className="px-5 py-2.5 w-full bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition">
-                            <FaArrowRightLong />
-                        </button>
+                        <Link to="services">
+                            <button className="px-5 py-2.5 w-full bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition">
+                                <FaArrowRightLong />
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div >

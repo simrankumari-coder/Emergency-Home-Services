@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router';
 import Hero from '../components/Hero'
 import servicesData from '../data/services'
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -188,7 +189,9 @@ const Home = () => {
                 <div className="text-center p-4 flex flex-col items-center justify-center mx-auto  bg-gray-50">
                     <h1 className='text-xl md:text-3xl font-bold text-slate-900 mt-2'>Need Emergency Help right now </h1>
                     <p className="text-sm text-gray-600 leading-6">Request a service and get the available help right now</p>
-                    <button className="px-5 py-2.5 flex gap-2 justify-center items-center bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition mt-4">Request Emergency Help < FaArrowRightLong className='text-center mt-1' /></button>
+                    <Link to="request-service">
+                        <button className="px-5 py-2.5 flex gap-2 justify-center items-center bg-blue-800 text-white rounded-lg font-medium hover:bg-blue-900 transition mt-4">Request Emergency Help < FaArrowRightLong className='text-center mt-1' /></button>
+                    </Link>
                 </div>
             </section>
         </div>

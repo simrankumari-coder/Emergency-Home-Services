@@ -1,8 +1,10 @@
 import React from "react";
-import { useParams } from "react-router";
+import { NavLink, useParams } from "react-router";
 import servicesData from "../data/services";
+import { useNavigate } from "react-router";
 
 const ServiceDetails = () => {
+    const navigate = useNavigate();
     const { id } = useParams();
 
     const service = servicesData.find((item) => {
@@ -17,6 +19,9 @@ const ServiceDetails = () => {
                 </h2>
             </div>
         );
+    }
+    const handleServiceBtn = () => {
+        navigate(`/request-service?service=${service.name}`)
     }
 
     const Icon = service.icon;
@@ -107,9 +112,10 @@ const ServiceDetails = () => {
                             for your emergency service needs.
                         </p>
 
-                        <button className="mt-8 w-full py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
+                        <button onClick={handleServiceBtn} className="mt-8 w-full py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition">
                             Request This Service
                         </button>
+
 
                     </div>
 

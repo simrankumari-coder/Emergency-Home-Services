@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 import {
     FaBolt,
     FaClock,
@@ -200,10 +201,11 @@ const About = () => {
                     <p className="mt-3 text-blue-100">
                         Request a service and get connected with available help.
                     </p>
-
-                    <button className="mt-6 bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-                        Request Emergency Service →
-                    </button>
+                    <Link to="/request-service">
+                        <button className="mt-6 bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                            Request Emergency Service →
+                        </button>
+                    </Link>
 
                 </div>
             </section>
