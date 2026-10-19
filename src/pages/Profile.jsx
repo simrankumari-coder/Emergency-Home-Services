@@ -11,7 +11,7 @@ const Profile = ({ isLogin, setIsLogin }) => {
     const user = userInfo ? JSON.parse(userInfo) : {}
 
     localStorage.getItem("isLoggedIn")
-    console.log(serviceRequests)
+
 
     const handleLogout = () => {
         localStorage.removeItem("isLoggedIn")

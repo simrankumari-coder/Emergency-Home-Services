@@ -35,7 +35,7 @@ const EmergencyRequest = () => {
                 return service === item.service && item.available === true
             })
 
-            const finalResult = { ...emergencyRequest, technician }
+            const finalResult = { ...emergencyRequest, technician, status: technician ? "Technician Assigned" : "No Technician Assigned" }
             localStorage.setItem("finalResult", JSON.stringify(finalResult))
             serviceRequests.push(finalResult)
             localStorage.setItem("storeRequest", JSON.stringify(serviceRequests))

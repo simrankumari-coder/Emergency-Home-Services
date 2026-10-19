@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import EmergencyRequest from './pages/EmergencyRequest'
 import Login from './pages/Login'
+import TechnicianDashboard from './pages/TechnicianDashboard'
 import SignUp from './pages/SignUp'
 import Footer from './components/Footer'
 import Profile from './pages/Profile'
@@ -27,6 +28,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="profile" element={<Profile isLogin={isLogin} setIsLogin={setIsLogin} />} />
         <Route path="/login" element={<Login isLogin={isLogin} setIsLogin={setIsLogin} />} />
+        <Route path='/technician-dashboard' element={<TechnicianDashboard />} />
       </Routes>
       <Footer />
 

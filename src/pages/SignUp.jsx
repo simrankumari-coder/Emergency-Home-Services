@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import technicians from "../data/technician";
 const Signup = ({ }) => {
     const navigate = useNavigate()
     const [name, setName] = useState("")
@@ -9,34 +10,87 @@ const Signup = ({ }) => {
     const [phone, setPhone] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPass, setConfirmPass] = useState("")
+    const [role, setRole] = useState("Customer")
     const [dob, setDob] = useState("")
+    const [error, setError] = useState("")
+    const [technicianName, setTechnicianName] = useState("")
 
 
     const handleClick = (e) => {
         e.preventDefault()
-        if (name.trim().length < 2 || !emailRegex.test(email) || password.length < 6 || phone.length !== 10 || confirmPass !== password) {
+        alert("handleCLick is working")
+        console.log(
+            {
+                name: name.trim().length,
+                email: emailRegex.test(email),
+                password: password.length,
+                phone: phone.length,
+                confirmPassSS: confirmPass === password
+            }
+        )
+        setError("")
+        const isValid = name.trim().length < 2 ||
+            !emailRegex.test(email) ||
+            password.length < 6 ||
+            phone.length !== 10 ||
+            confirmPass !== password
+        console.log("isValid", isValid)
+        if (isValid) {
+            console.log("return from valid conditions")
+            setError("Please enter a valid details")
+
             return;
         } else {
 
-            const signUpData = {
-                name: name,
-                email: email,
-                phone: phone,
-                password: password,
-                dob: dob
+            console.log("cvaildation passed")
+        }
 
+        // else {
+
+        const storedUsers = JSON.parse(localStorage.getItem("users") || "[]")
+        const alreadyExists = storedUsers.some((user) => user.email.toLowerCase() === email.trim().toLowerCase())
+        console.log("Duplicate check passed", alreadyExists)
+
+        if (alreadyExists) {
+            setError("An Account with this email already exits")
+            return
+        }
+
+        let matchedTechnician = null;
+        if (role === "Technician") {
+            matchedTechnician = technicians.find((item) => item.name === technicianName)
+            if (!matchedTechnician) {
+                setError("Technician name not found in the technician list. Please use the registered technician name.")
+                return;
             }
 
-
-            localStorage.setItem("userInfo", JSON.stringify(signUpData))
-            setName("")
-            setEmail("")
-            setPhone("")
-            setPassword("")
-            setDob("")
-            setConfirmPass("")
+        }
+        console.log("technician check passed")
+        const signUpData = {
+            id: Date.now(),
+            name: name.trim(),
+            email: email.trim().toLowerCase(),
+            phone,
+            password,
+            dob,
+            role,
+            technicianId: matchedTechnician ? matchedTechnician.id : null
 
         }
+
+        console.log("Saving signup data", signUpData)
+        storedUsers.push(signUpData)
+        localStorage.setItem("users", JSON.stringify(storedUsers))
+        setName("")
+        setEmail("")
+        setPhone("")
+        setPassword("")
+        setDob("")
+        setConfirmPass("")
+
+        // }
+        console.log("validTION completed")
+        alert("validation Completed")
         navigate("/login")
 
     }
@@ -116,6 +170,27 @@ const Signup = ({ }) => {
                             type="date"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600" />
                     </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-900 mb-2">Register As</label>
+                        <select className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600" value={role} onChange={(e) => { setRole(e.target.value); setTechnicianName(""); }}>
+                            <option value="Customer">Customer</option>
+                            <option value="Technician">Technician</option>
+                        </select>
+                    </div>
+                    {
+                        role === "Technician" && (
+                            <div>
+
+                                <label className="block text-sm font-medium text-slate-900 mb-2">Select</label>
+                                <select value={technicianName} onChange={(e) => setTechnicianName(e.target.value)} className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600" >
+
+                                    <option value="">Select Technician Name</option>
+                                    {technicians.map((item) =>
+                                        <option key={item.id} value={item.name}>{item.name}</option>)}
+                                </select>
+                            </div>
+                        )
+                    }
                     {/* Password */}
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">
@@ -127,7 +202,7 @@ const Signup = ({ }) => {
                             placeholder="Create a password"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
-                        {(password.length > 0 && password.length !== 6) && <p className="text-sm text-red-500 mt-1">Password should be contain six characters</p>}
+                        {(password.length > 0 && password.length < 6) && <p className="text-sm text-red-500 mt-1">Password should be contain six characters</p>}
                     </div>
 
                     {/* Confirm Password */}
@@ -143,6 +218,8 @@ const Signup = ({ }) => {
                         />
                         {confirmPass.length > 0 && confirmPass !== password && (<p className="text-sm text-red-500 mt-1">Password didn't match</p>)}
                     </div>
+                    {error && (
+                        <p className="text-red-500 text-sm text-center">{error}</p>)}
 
                     {/* Sign Up */}
                     <button
@@ -156,7 +233,8 @@ const Signup = ({ }) => {
                             password.length < 6 ||
                             phone.length !== 10 ||
                             !confirmPass ||
-                            confirmPass !== password
+                            confirmPass !== password ||
+                            !role
                         }
                         className="w-full bg-blue-800 text-white py-3 rounded-lg font-semibold hover:bg-blue-900 transition"
                     >

@@ -2,34 +2,38 @@ import React from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-const Login = ({ isLogin, setIsLogin }) => {
+const Login = ({ setIsLogin }) => {
     const navigate = useNavigate()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loginError, setLoginError] = useState(false)
-    const userInfo = localStorage.getItem("userInfo")
-    const user = userInfo ? JSON.parse(userInfo) : null;
 
+    const storedUsers = JSON.parse(localStorage.getItem("users" || "[]"))
+    const user = storedUsers.find((item) => item.email === email.trim().toLowerCase())
     const handleClick = (e) => {
         e.preventDefault();
-        if (!user) {
+        if (email.trim() === "" || password.length === 0) {
             setLoginError(true)
-            return;
+            return
         }
-        if (email === "" || password === "") {
-            return;
+        if (!user || user.password !== password) {
+            return
+        }
+
+
+        localStorage.setItem("loggedInUser", JSON.stringify(user))
+        localStorage.setItem("isLoggedIn", "true")
+        console.log("Saved User:", user)
+        setIsLogin(true)
+
+        setEmail("")
+        setPassword("")
+        if (user.role === "Technician") {
+            navigate("/technician-dashboard")
+
         } else {
 
-
-            setEmail("")
-            setPassword("")
-            if (email === user.email && password === user.password) {
-                localStorage.setItem("isLoggedIn", "true")
-                setIsLogin(true)
-                navigate("/profile")
-            } else {
-                setLoginError(true)
-            }
+            navigate("/profile")
         }
     }
     return (
@@ -68,7 +72,7 @@ const Login = ({ isLogin, setIsLogin }) => {
                             placeholder="Enter your email"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
-                        {(user && email.length > 0 && user.email !== email) && <p className="text-sm text-red-500 mt-1">Email is not correct</p>}
+                        {email.length > 0 && !user && (<p className="text-sm text-red-500 mt-1">Email is not correct</p>)}
                     </div>
 
                     {/* Password */}
@@ -85,7 +89,7 @@ const Login = ({ isLogin, setIsLogin }) => {
                             placeholder="Enter your password"
                             className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                         />
-                        {(user && password.length > 0 && user.password !== password) && <p className="text-sm text-red-500 mt-1">Password didn't match</p>}
+                        {user && password.length > 0 && user.password !== password && (<p className="text-sm text-red-500 mt-1">Password didn't match</p>)}
                     </div>
 
                     {/* Forgot Password */}

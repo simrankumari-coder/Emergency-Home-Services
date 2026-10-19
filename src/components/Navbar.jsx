@@ -18,6 +18,7 @@ const Navbar = ({ isLogin, setIsLogin }) => {
     navigate("/login");
   };
 
+
   const linkStyle = ({ isActive }) =>
     isActive
       ? "text-blue-200 font-semibold"
@@ -33,7 +34,7 @@ const Navbar = ({ isLogin, setIsLogin }) => {
 
       <div className="hidden md:flex items-center gap-6">
 
-        <NavLink to="/" end className={linkStyle}>
+        <NavLink to="/" className={linkStyle}>
           Home
         </NavLink>
 
@@ -57,9 +58,12 @@ const Navbar = ({ isLogin, setIsLogin }) => {
           <>
             <span>Hi, {user?.name?.split(" ")[0] || "User"}</span>
 
-            <NavLink to="/profile" className={linkStyle}>
+            {user?.role === "Customer" && (<NavLink to="/profile" className={linkStyle}>
               Profile
-            </NavLink>
+            </NavLink>)}
+            {user?.role === "Technician" && (<NavLink to="/technician-dashboard" className={linkStyle}>
+              Technician Dashboard
+            </NavLink>)}
 
 
           </>
@@ -86,7 +90,7 @@ const Navbar = ({ isLogin, setIsLogin }) => {
       {menu && (
         <div className="absolute right-4 top-16 flex flex-col gap-4 bg-blue-800 p-5 md:hidden">
 
-          <NavLink to="/" end onClick={() => setMenu(false)}>
+          <NavLink to="/" onClick={() => setMenu(false)}>
             Home
           </NavLink>
 
@@ -108,9 +112,12 @@ const Navbar = ({ isLogin, setIsLogin }) => {
 
           {isLogin ? (
             <>
-              <NavLink to="/profile" onClick={() => setMenu(false)}>
+              {user?.role === "Customer" && (<NavLink to="/profile" className={linkStyle}>
                 Profile
-              </NavLink>
+              </NavLink>)}
+              {user?.role === "Technician" && (<NavLink to="/technician-dashboard" className={linkStyle}>
+                Technician Dashboard
+              </NavLink>)}
 
               <button onClick={handleLogout}>
                 Logout
