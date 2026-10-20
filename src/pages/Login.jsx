@@ -8,7 +8,7 @@ const Login = ({ setIsLogin }) => {
     const [password, setPassword] = useState("")
     const [loginError, setLoginError] = useState(false)
 
-    const storedUsers = JSON.parse(localStorage.getItem("users" || "[]"))
+    const storedUsers = JSON.parse(localStorage.getItem("users" || []))
     const user = storedUsers.find((item) => item.email === email.trim().toLowerCase())
     const handleClick = (e) => {
         e.preventDefault();

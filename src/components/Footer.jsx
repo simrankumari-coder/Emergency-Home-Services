@@ -1,6 +1,9 @@
 import React from 'react'
 import { FaEnvelope } from "react-icons/fa";
+import { Link } from 'react-router';
 const Footer = () => {
+    const loggedUser = JSON.parse(localStorage.getItem("loggedInUser") || "null")
+    const isTechnician = loggedUser?.role === "Technician"
     return (
 
         <footer className=' text-white bg-gray-950 p-4'>
@@ -8,35 +11,58 @@ const Footer = () => {
                 <section>
                     <h1 className='text-xl'>EHS</h1>
                     <h2 className='text-gray-200 hover:text-blue-400 transition text-sm' >Emergency Home Services</h2>
-                    <p className='text-gray-200 hover:text-blue-400 transition text-[12px]'>Quick and reliable help for urgent home needs</p>
+                    <p className='text-gray-200 hover:text-blue-400 transition text-[12px]'>Quick and reLinkable help for urgent home needs</p>
                 </section>
                 <section>
-                    <h1 className='text-gray-100 text-lg font-semibold uppercase tracking-wide mb-4'>Quick Links</h1>
+                    <h1 className='text-gray-100 text-lg font-semibold uppercase tracking-wide mb-4'>Quick lis</h1>
                     <ul>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>Home</li>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>Services</li>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>Emergency Request</li>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>Track Service</li>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>About</li>
+                        <Link to="/home" className='text-gray-200 hover:text-blue-400 transition text-sm'>Home</Link>
+                        {isTechnician ? (<Link className='text-gray-200 hover:text-blue-400 transition text-sm'>Technician Dashboard</Link>) : (<>
+                            <li>
+                                <Link to="/services" className='text-gray-200 hover:text-blue-400 transition text-sm'>Services</Link>
+                            </li>
+                            <li >
+                                <Link to="/emergency-request" className='text-gray-200 hover:text-blue-400 transition text-sm'>Emergency Request</Link>
+                            </li>
+                            <li >
+                                <Link to="/track-services" className='text-gray-200 hover:text-blue-400 transition text-sm'>Track Service</Link>
+                            </li>
+                        </>)}
+                        <li>
+                            <Link to="/about" className='text-gray-200 hover:text-blue-400 transition text-sm'>About</Link></li>
                     </ul>
                 </section>
                 <section>
                     <h1 className='text-gray-100 text-lg font-semibold uppercase tracking-wide mb-4'>Services</h1>
                     <ul>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>Plumbing</li>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>Electrical</li>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>AC Repair</li>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>Appliance Repair</li>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>Locksmith</li>
+                        {!isTechnician && (
+                            <>
+                                <li>
+                                    <Link to="/services" className='text-gray-200 hover:text-blue-400 transition text-sm'>Plumbing</Link>
+                                </li>
+                                <li>
+                                    <Link to="/services" className='text-gray-200 hover:text-blue-400 transition text-sm'>Electrical</Link>
+                                </li>
+                                <li>
+                                    <Link to="/services" className='text-gray-200 hover:text-blue-400 transition text-sm'>AC Repair</Link>
+                                </li>
+                                <li>
+                                    <Link to="/services" className='text-gray-200 hover:text-blue-400 transition text-sm'>AppLinkance Repair</Link>
+                                </li>
+                                <li>
+                                    <Link to="/services" className='text-gray-200 hover:text-blue-400 transition text-sm'>Locksmith</Link>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </section>
                 <section>
                     <h1 className='text-gray-100 text-lg font-semibold uppercase tracking-wide mb-4'>Contact</h1>
                     <ul>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>24/7 Emergency Support</li>
-                        <li className='text-gray-200 hover:text-blue-400 transition text-sm'>+ 91 XXXXX XXXXX</li>
-                        <li > <p className='flex gap-1'>
-                            <a className='text-gray-300 flex gap-1 text-sm' href='https://mail.google.com/mail/?view=cm&fs=1&to=support@hometownhub.com' target='_blank' rel='noopener noreferer'>< FaEnvelope className='text-sm mt-1 ' /><span className=''>support@ehs.com</span></a></p></li>
+                        <Link className='text-gray-200 hover:text-blue-400 transition text-sm'>24/7 Emergency Support</Link>
+                        <Link className='text-gray-200 hover:text-blue-400 transition text-sm'>+ 91 XXXXX XXXXX</Link>
+                        <Link > <p className='flex gap-1'>
+                            <a className='text-gray-300 flex gap-1 text-sm' href='https://mail.google.com/mail/?view=cm&fs=1&to=support@hometownhub.com' target='_blank' rel='noopener noreferer'>< FaEnvelope className='text-sm mt-1 ' /><span className=''>support@ehs.com</span></a></p></Link>
                     </ul>
                 </section>
             </div>

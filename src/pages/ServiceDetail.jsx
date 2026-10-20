@@ -21,7 +21,7 @@ const ServiceDetails = () => {
         );
     }
     const handleServiceBtn = () => {
-        navigate(`/request-service?service=${service.name}`)
+        navigate(`/request-service?service=${encodeURIComponent(service.name)}`)
     }
 
     const Icon = service.icon;

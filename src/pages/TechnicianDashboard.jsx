@@ -5,9 +5,14 @@ const TechnicianDashboard = () => {
     const storeRequests = localStorage.getItem("storeRequest");
     return storeRequests ? JSON.parse(storeRequests) : []
   })
-  const loggedUser = localStorage.getItem("loggedInUser")
+  const loggedUser = JSON.parse(localStorage.getItem("loggedInUser") || "null")
+
   const assignedRequests = requests.filter((item) => item.technician?.id === loggedUser?.technicianId)
+  console.log("log in technician", loggedUser)
+  console.log("Saved reuqytes", requests)
+  console.log("assinged requests", assignedRequests)
   const updateStatus = (requestIndex, newStatus) => {
+
     const updatedRequests = requests.map((item, index) =>
       index === requestIndex ? {
         ...item, status: newStatus

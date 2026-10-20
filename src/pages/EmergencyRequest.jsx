@@ -16,14 +16,21 @@ const EmergencyRequest = () => {
     const navigate = useNavigate()
     const storedRequest = localStorage.getItem("storeRequest")
     let serviceRequests = storedRequest ? JSON.parse(storedRequest) : [];
-    const handleClick = () => {
-
+    const loggedUser = JSON.parse(localStorage.getItem("loggedInUser") || "null")
+    const handleClick = (e) => {
+        e.preventDefault();
+        if (!loggedUser) {
+            navigate("/login")
+            return
+        }
 
         if (service === "" || problem === "" || name === "" || phone === "" || address === "" || emergencyLevel === "" || name.length < 2 || phone.length !== 10) {
             return
         } else {
             const emergencyRequest = {
+                id: Date.now(),
                 service: service,
+                email: loggedUser.email,
                 problem: problem,
                 name: name,
                 phone: phone,
@@ -34,6 +41,7 @@ const EmergencyRequest = () => {
             const technician = technicians.find((item) => {
                 return service === item.service && item.available === true
             })
+            console.log("Assinged technician", technician)
 
             const finalResult = { ...emergencyRequest, technician, status: technician ? "Technician Assigned" : "No Technician Assigned" }
             localStorage.setItem("finalResult", JSON.stringify(finalResult))

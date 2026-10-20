@@ -4,9 +4,13 @@ import { FaLocationDot, FaCircleCheck } from "react-icons/fa6";
 import { useState } from "react";
 const TrackService = () => {
     const [showContactMessage, setshowContactMessage] = useState(false)
-    const technicianData = localStorage.getItem("finalResult")
-    const technician = JSON.parse(technicianData)
-
+    const loggedUser = JSON.parse(localStorage.getItem("loggedInUser") || "null");
+    const requests = JSON.parse(localStorage.getItem("storeRequest") || "[]")
+    const request = requests.filter((item) =>
+        item.email?.toLowerCase() === loggedUser?.email?.toLowerCase()).at(-1)
+    if (!request) {
+        return <p className="p-6">No Service request found.</p>
+    }
     return (
         <div className="min-h-screen bg-gray-50 py-16 px-6">
 
@@ -36,7 +40,7 @@ const TrackService = () => {
                         </span>
 
                         <span className="text-gray-600">
-                            {technician.technician.id}
+                            {request.id}
                         </span>
                     </div>
 
@@ -46,7 +50,7 @@ const TrackService = () => {
                         </span>
 
                         <span className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
-                            Technician Assigned
+                            {request.status}
                         </span>
                     </div>
 
@@ -66,7 +70,7 @@ const TrackService = () => {
                     </span>
 
                     <span className="text-gray-600">
-                        {technician.technician.service}
+                        {request.service}
                     </span>
                 </div>
 
@@ -80,7 +84,7 @@ const TrackService = () => {
                     </span>
 
                     <span className="text-gray-600">
-                        {technician.technician.responseTime}
+                        {request.technician?.responseTime}
                     </span>
                 </div>
 
@@ -104,16 +108,16 @@ const TrackService = () => {
                         <div>
                             <div className="flex items-center gap-2">
                                 <span className=" text-md md:text-lg font-semibold text-slate-900">
-                                    {technician.technician.name}
+                                    {request.technician?.name}
                                 </span>
 
                                 <span className="text-gray-600">
-                                    ⭐{technician.technician.rating}
+                                    ⭐{request.technician?.rating}
                                 </span>
                             </div>
 
                             <p className="text-gray-500 text-sm">
-                                {technician.technician.service} Technician
+                                {request.technician.service} Technician
                             </p>
                         </div>
 
@@ -206,7 +210,7 @@ const TrackService = () => {
 
                     <div>
                         <h3 className="font-semibold text-slate-900">
-                            {technician.address}
+                            {request.address}
                         </h3>
 
                         <p className="text-sm text-gray-500">

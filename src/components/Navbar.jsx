@@ -7,12 +7,11 @@ import { ImCross } from "react-icons/im";
 const Navbar = ({ isLogin, setIsLogin }) => {
   const navigate = useNavigate();
   const [menu, setMenu] = useState(false);
-
-  const userInfo = localStorage.getItem("userInfo");
-  const user = userInfo ? JSON.parse(userInfo) : null;
+  const loggedUser = JSON.parse(localStorage.getItem("loggedInUser") || "null")
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("loggedInUser");
     setIsLogin(false);
     setMenu(false);
     navigate("/login");
@@ -37,18 +36,36 @@ const Navbar = ({ isLogin, setIsLogin }) => {
         <NavLink to="/" className={linkStyle}>
           Home
         </NavLink>
+        {isLogin && loggedUser?.role === "Technician" ? (
+          <>
+            <NavLink to="/technician-dashboard">Technician Dashboard</NavLink>
+            <NavLink to="/profile" className={linkStyle}>
+              Profile
+            </NavLink>
+          </>
+        ) : (
+          <>
 
-        <NavLink to="/services" className={linkStyle}>
-          Services
-        </NavLink>
+            <NavLink to="/services" className={linkStyle}>
+              Services
+            </NavLink>
 
-        <NavLink to="/request-service" className={linkStyle}>
-          Emergency Request
-        </NavLink>
+            <NavLink to="/request-service" className={linkStyle}>
+              Emergency Request
+            </NavLink>
+            {isLogin && (
 
-        <NavLink to="/track-service" className={linkStyle}>
-          Track Service
-        </NavLink>
+              <NavLink to="/track-service" className={linkStyle}>
+                Track Service
+              </NavLink>)}
+            {isLogin && (
+              <NavLink to="/profile" className={linkStyle}>
+                Profile
+              </NavLink>
+            )}
+          </>
+        )}
+
 
         <NavLink to="/about" className={linkStyle}>
           About
@@ -56,16 +73,8 @@ const Navbar = ({ isLogin, setIsLogin }) => {
 
         {isLogin ? (
           <>
-            <span>Hi, {user?.name?.split(" ")[0] || "User"}</span>
-
-            {user?.role === "Customer" && (<NavLink to="/profile" className={linkStyle}>
-              Profile
-            </NavLink>)}
-            {user?.role === "Technician" && (<NavLink to="/technician-dashboard" className={linkStyle}>
-              Technician Dashboard
-            </NavLink>)}
-
-
+            <span>Hi, {loggedUser?.name?.split(" ")[0] || "User"}</span>
+            <button onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <>
@@ -79,7 +88,7 @@ const Navbar = ({ isLogin, setIsLogin }) => {
           </>
         )}
       </div>
-
+      {/* Mobile Menu Button */}
       <button
         className="md:hidden"
         onClick={() => setMenu(!menu)}
@@ -93,18 +102,38 @@ const Navbar = ({ isLogin, setIsLogin }) => {
           <NavLink to="/" onClick={() => setMenu(false)}>
             Home
           </NavLink>
+          {isLogin && loggedUser?.role === "Technician" ? (
+            <>
+              <NavLink to="/technician-dashboard" onClick={() => setMenu(false)}>Technician Dashboard</NavLink>
+              <NavLink to="/profile" onClick={() => setMenu(false)} >
+                Profile
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink to="/services" onClick={() => setMenu(false)}>
+                Services
+              </NavLink>
 
-          <NavLink to="/services" onClick={() => setMenu(false)}>
-            Services
-          </NavLink>
+              <NavLink to="/request-service" onClick={() => setMenu(false)}>
+                Emergency Request
+              </NavLink>
+              {isLogin && (
+                <>
 
-          <NavLink to="/request-service" onClick={() => setMenu(false)}>
-            Emergency Request
-          </NavLink>
+                  <NavLink to="/track-service" onClick={() => setMenu(false)}>
+                    Track Service
+                  </NavLink>
+                  <NavLink to="/profile" onClick={() => setMenu(false)} >
+                    Profile
+                  </NavLink>
+                </>
+              )}
+            </>
 
-          <NavLink to="/track-service" onClick={() => setMenu(false)}>
-            Track Service
-          </NavLink>
+          )}
+
+
 
           <NavLink to="/about" onClick={() => setMenu(false)}>
             About
@@ -112,12 +141,10 @@ const Navbar = ({ isLogin, setIsLogin }) => {
 
           {isLogin ? (
             <>
-              {user?.role === "Customer" && (<NavLink to="/profile" className={linkStyle}>
-                Profile
-              </NavLink>)}
-              {user?.role === "Technician" && (<NavLink to="/technician-dashboard" className={linkStyle}>
-                Technician Dashboard
-              </NavLink>)}
+              <span>
+                Hi, {loggedUser?.name?.split(" ")[0] || "User"}
+              </span>
+
 
               <button onClick={handleLogout}>
                 Logout
