@@ -16,16 +16,16 @@ const Footer = () => {
                 <section>
                     <h1 className='text-gray-100 text-lg font-semibold uppercase tracking-wide mb-4'>Quick lis</h1>
                     <ul>
-                        <Link to="/home" className='text-gray-200 hover:text-blue-400 transition text-sm'>Home</Link>
+                        <Link to="/" className='text-gray-200 hover:text-blue-400 transition text-sm'>Home</Link>
                         {isTechnician ? (<Link className='text-gray-200 hover:text-blue-400 transition text-sm'>Technician Dashboard</Link>) : (<>
                             <li>
                                 <Link to="/services" className='text-gray-200 hover:text-blue-400 transition text-sm'>Services</Link>
                             </li>
                             <li >
-                                <Link to="/emergency-request" className='text-gray-200 hover:text-blue-400 transition text-sm'>Emergency Request</Link>
+                                <Link to="/request-service" className='text-gray-200 hover:text-blue-400 transition text-sm'>Emergency Request</Link>
                             </li>
                             <li >
-                                <Link to="/track-services" className='text-gray-200 hover:text-blue-400 transition text-sm'>Track Service</Link>
+                                <Link to="/track-service" className='text-gray-200 hover:text-blue-400 transition text-sm'>Track Service</Link>
                             </li>
                         </>)}
                         <li>
@@ -61,8 +61,8 @@ const Footer = () => {
                     <ul>
                         <Link className='text-gray-200 hover:text-blue-400 transition text-sm'>24/7 Emergency Support</Link>
                         <Link className='text-gray-200 hover:text-blue-400 transition text-sm'>+ 91 XXXXX XXXXX</Link>
-                        <Link > <p className='flex gap-1'>
-                            <a className='text-gray-300 flex gap-1 text-sm' href='https://mail.google.com/mail/?view=cm&fs=1&to=support@hometownhub.com' target='_blank' rel='noopener noreferer'>< FaEnvelope className='text-sm mt-1 ' /><span className=''>support@ehs.com</span></a></p></Link>
+                        <p className='flex gap-1'>
+                            <a className='text-gray-300 flex gap-1 text-sm' href='https://mail.google.com/mail/?view=cm&fs=1&to=support@hometownhub.com' target='_blank' rel='noopener noreferer'>< FaEnvelope className='text-sm mt-1 ' /><span className=''>support@ehs.com</span></a></p>
                     </ul>
                 </section>
             </div>

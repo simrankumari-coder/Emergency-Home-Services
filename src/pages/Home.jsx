@@ -46,7 +46,7 @@ const Home = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-                    {/* Fast Response */}
+
                     <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
                         <div className="w-14 h-14 mx-auto rounded-full bg-red-50 flex items-center justify-center mb-5">
                             <span className="text-2xl">⚡</span>
@@ -60,8 +60,6 @@ const Home = () => {
                             Get quick assistance for urgent home service needs.
                         </p>
                     </div>
-
-                    {/* Verified Technicians */}
                     <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
                         <div className="w-14 h-14 mx-auto rounded-full bg-red-50 flex items-center justify-center mb-5">
                             <span className="text-2xl">🛠️</span>
@@ -76,7 +74,7 @@ const Home = () => {
                         </p>
                     </div>
 
-                    {/* Nearest Technician */}
+
                     <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
                         <div className="w-14 h-14 mx-auto rounded-full bg-red-50 flex items-center justify-center mb-5">
                             <span className="text-2xl">📍</span>
@@ -91,7 +89,7 @@ const Home = () => {
                         </p>
                     </div>
 
-                    {/* Available 24/7 */}
+
                     <div className="bg-white rounded-2xl p-6 text-center shadow-sm border border-gray-200">
                         <div className="w-14 h-14 mx-auto rounded-full bg-red-50 flex items-center justify-center mb-5">
                             <span className="text-2xl">🕐</span>
@@ -125,7 +123,7 @@ const Home = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
 
-                    {/* Step 1 */}
+
                     <div className="text-center">
                         <div className="w-14 h-14 mx-auto rounded-full bg-red-50 flex items-center justify-center mb-5">
                             <span className="text-xl font-bold text-red-600">1</span>
@@ -140,7 +138,7 @@ const Home = () => {
                         </p>
                     </div>
 
-                    {/* Step 2 */}
+
                     <div className="text-center">
                         <div className="w-14 h-14 mx-auto rounded-full bg-red-50 flex items-center justify-center mb-5">
                             <span className="text-xl font-bold text-red-600">2</span>
@@ -155,7 +153,7 @@ const Home = () => {
                         </p>
                     </div>
 
-                    {/* Step 3 */}
+
                     <div className="text-center">
                         <div className="w-14 h-14 mx-auto rounded-full bg-red-50 flex items-center justify-center mb-5">
                             <span className="text-xl font-bold text-red-600">3</span>
@@ -170,7 +168,7 @@ const Home = () => {
                         </p>
                     </div>
 
-                    {/* Step 4 */}
+
                     <div className="text-center">
                         <div className="w-14 h-14 mx-auto rounded-full bg-red-50 flex items-center justify-center mb-5">
                             <span className="text-xl font-bold text-red-600">4</span>

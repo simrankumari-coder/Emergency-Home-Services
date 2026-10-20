@@ -8,13 +8,17 @@ const Login = ({ setIsLogin }) => {
     const [password, setPassword] = useState("")
     const [loginError, setLoginError] = useState(false)
 
-    const storedUsers = JSON.parse(localStorage.getItem("users" || []))
+    const storedUsers = JSON.parse(localStorage.getItem("users") || "[]")
     const user = storedUsers.find((item) => item.email === email.trim().toLowerCase())
     const handleClick = (e) => {
         e.preventDefault();
         if (email.trim() === "" || password.length === 0) {
             setLoginError(true)
             return
+        }
+        if (storedUsers.length === 0) {
+            setLoginError(true)
+            return;
         }
         if (!user || user.password !== password) {
             return
@@ -23,7 +27,7 @@ const Login = ({ setIsLogin }) => {
 
         localStorage.setItem("loggedInUser", JSON.stringify(user))
         localStorage.setItem("isLoggedIn", "true")
-        console.log("Saved User:", user)
+
         setIsLogin(true)
 
         setEmail("")
@@ -40,7 +44,7 @@ const Login = ({ setIsLogin }) => {
         <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-12">
             <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
 
-                {/* Heading */}
+
                 <div className="text-center">
                     <p className="text-blue-600 font-semibold text-sm tracking-wide">
                         WELCOME BACK
@@ -55,10 +59,9 @@ const Login = ({ setIsLogin }) => {
                     </p>
                 </div>
 
-                {/* Form */}
                 <form className="mt-8 space-y-5" onSubmit={handleClick}>
 
-                    {/* Email */}
+
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">
                             Email Address
@@ -75,7 +78,7 @@ const Login = ({ setIsLogin }) => {
                         {email.length > 0 && !user && (<p className="text-sm text-red-500 mt-1">Email is not correct</p>)}
                     </div>
 
-                    {/* Password */}
+
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">
                             Password
@@ -92,7 +95,7 @@ const Login = ({ setIsLogin }) => {
                         {user && password.length > 0 && user.password !== password && (<p className="text-sm text-red-500 mt-1">Password didn't match</p>)}
                     </div>
 
-                    {/* Forgot Password */}
+
                     <div className="text-right">
                         <button
                             type="button"
@@ -102,7 +105,7 @@ const Login = ({ setIsLogin }) => {
                         </button>
                     </div>
 
-                    {/* Login Button */}
+
                     <button
                         type="submit"
                         className="w-full bg-blue-800 text-white py-3 rounded-lg font-semibold hover:bg-blue-900 transition"
@@ -112,7 +115,7 @@ const Login = ({ setIsLogin }) => {
                     {loginError && <p className="text-sm text-red-500 mt-1">Please Sign Up First</p>}
                 </form>
 
-                {/* Sign Up */}
+
                 <p className="text-center text-sm text-gray-600 mt-6">
                     Don't have an account?{" "}
                     <Link

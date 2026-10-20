@@ -11,7 +11,7 @@ const About = () => {
     return (
         <div className="min-h-screen bg-gray-50">
 
-            {/* Hero */}
+
             <section className="bg-white py-16 px-6">
                 <div className="max-w-4xl mx-auto text-center">
                     <p className="text-blue-600 font-semibold text-sm tracking-wide">
@@ -29,7 +29,7 @@ const About = () => {
                 </div>
             </section>
 
-            {/* About EHS */}
+
             <section className="py-16 px-6">
                 <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
 
@@ -68,7 +68,7 @@ const About = () => {
                 </div>
             </section>
 
-            {/* Why Choose EHS */}
+
             <section className="bg-white py-16 px-6">
                 <div className="max-w-6xl mx-auto">
 
@@ -132,7 +132,7 @@ const About = () => {
                 </div>
             </section>
 
-            {/* How It Works */}
+
             <section className="py-16 px-6">
                 <div className="max-w-5xl mx-auto text-center">
 
@@ -190,7 +190,7 @@ const About = () => {
                 </div>
             </section>
 
-            {/* CTA */}
+
             <section className="bg-blue-800 py-14 px-6">
                 <div className="max-w-4xl mx-auto text-center text-white">
 

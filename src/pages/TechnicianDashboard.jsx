@@ -8,9 +8,7 @@ const TechnicianDashboard = () => {
   const loggedUser = JSON.parse(localStorage.getItem("loggedInUser") || "null")
 
   const assignedRequests = requests.filter((item) => item.technician?.id === loggedUser?.technicianId)
-  console.log("log in technician", loggedUser)
-  console.log("Saved reuqytes", requests)
-  console.log("assinged requests", assignedRequests)
+
   const updateStatus = (requestIndex, newStatus) => {
 
     const updatedRequests = requests.map((item, index) =>
@@ -28,8 +26,7 @@ const TechnicianDashboard = () => {
       </div>
     )
   }
-  console.log("Logged-in user", loggedUser)
-  console.log("saved requests", requests)
+
   return (
     <div>
       <div className='min-h-screen bg-gray-50 p-6'>

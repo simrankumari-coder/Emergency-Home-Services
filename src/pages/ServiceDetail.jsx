@@ -29,12 +29,12 @@ const ServiceDetails = () => {
     return (
         <div className="bg-gray-50 min-h-screen py-16 px-6">
 
-            {/* Main Details Card */}
+
             <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden">
 
                 <div className="grid grid-cols-1 lg:grid-cols-2">
 
-                    {/* Left Side */}
+
                     <div className="p-10 lg:p-14">
 
                         <div className="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-6">
@@ -53,7 +53,7 @@ const ServiceDetails = () => {
                             {service.description}
                         </p>
 
-                        {/* Service Information */}
+
                         <div className="mt-8 space-y-4">
 
                             <div className="flex justify-between border-b border-gray-100 pb-3">
@@ -96,7 +96,6 @@ const ServiceDetails = () => {
 
                     </div>
 
-                    {/* Right Side */}
                     <div className="bg-blue-50 p-10 lg:p-14 flex flex-col justify-center">
 
                         <p className="text-sm text-gray-500">

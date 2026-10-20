@@ -18,38 +18,23 @@ const Signup = ({ }) => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        alert("handleCLick is working")
-        console.log(
-            {
-                name: name.trim().length,
-                email: emailRegex.test(email),
-                password: password.length,
-                phone: phone.length,
-                confirmPassSS: confirmPass === password
-            }
-        )
+
         setError("")
         const isValid = name.trim().length < 2 ||
             !emailRegex.test(email) ||
             password.length < 6 ||
             phone.length !== 10 ||
             confirmPass !== password
-        console.log("isValid", isValid)
+
         if (isValid) {
-            console.log("return from valid conditions")
+
             setError("Please enter a valid details")
 
             return;
-        } else {
-
-            console.log("cvaildation passed")
         }
-
-        // else {
 
         const storedUsers = JSON.parse(localStorage.getItem("users") || "[]")
         const alreadyExists = storedUsers.some((user) => user.email.toLowerCase() === email.trim().toLowerCase())
-        console.log("Duplicate check passed", alreadyExists)
 
         if (alreadyExists) {
             setError("An Account with this email already exits")
@@ -65,7 +50,7 @@ const Signup = ({ }) => {
             }
 
         }
-        console.log("technician check passed")
+
         const signUpData = {
             id: Date.now(),
             name: name.trim(),
@@ -78,7 +63,7 @@ const Signup = ({ }) => {
 
         }
 
-        console.log("Saving signup data", signUpData)
+
         storedUsers.push(signUpData)
         localStorage.setItem("users", JSON.stringify(storedUsers))
         setName("")
@@ -88,9 +73,7 @@ const Signup = ({ }) => {
         setDob("")
         setConfirmPass("")
 
-        // }
-        console.log("validTION completed")
-        alert("validation Completed")
+
         navigate("/login")
 
     }
@@ -100,7 +83,7 @@ const Signup = ({ }) => {
         <div className="min-h-screen bg-gray-50 flex items-center justify-center px-6 py-12">
             <div className="w-full max-w-md bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
 
-                {/* Heading */}
+
                 <div className="text-center">
                     <p className="text-blue-600 font-semibold text-sm tracking-wide">
                         GET STARTED
@@ -115,10 +98,9 @@ const Signup = ({ }) => {
                     </p>
                 </div>
 
-                {/* Form */}
                 <form className="mt-8 space-y-5" onSubmit={handleClick}>
 
-                    {/* Name */}
+
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">
                             Full Name
@@ -132,7 +114,7 @@ const Signup = ({ }) => {
                         {(name.length > 0 && name.length < 2) && <p className="text-sm text-red-500 mt-1">Username can't be less than two characters</p>}
                     </div>
 
-                    {/* Email */}
+
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">
                             Email Address
@@ -146,7 +128,7 @@ const Signup = ({ }) => {
                         {(email.length > 0 && !emailRegex.test(email)) && <p className="text-sm text-red-500 mt-1">Email should contain @ and . characters</p>}
                     </div>
 
-                    {/* Phone */}
+
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">
                             Phone Number
@@ -160,8 +142,7 @@ const Signup = ({ }) => {
                         {(phone.length > 0 && phone.length !== 10) && <p className="text-sm text-red-500 mt-1">Phone number should be correct</p>}
                     </div>
 
-                    {/* {DOB} */}
-                    {/* Phone */}
+
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">
                             Date Of Birth
@@ -191,7 +172,7 @@ const Signup = ({ }) => {
                             </div>
                         )
                     }
-                    {/* Password */}
+
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">
                             Password
@@ -205,7 +186,7 @@ const Signup = ({ }) => {
                         {(password.length > 0 && password.length < 6) && <p className="text-sm text-red-500 mt-1">Password should be contain six characters</p>}
                     </div>
 
-                    {/* Confirm Password */}
+
                     <div>
                         <label className="block text-sm font-medium text-slate-900 mb-2">
                             Confirm Password
@@ -221,7 +202,7 @@ const Signup = ({ }) => {
                     {error && (
                         <p className="text-red-500 text-sm text-center">{error}</p>)}
 
-                    {/* Sign Up */}
+
                     <button
                         type="submit"
                         disabled={
@@ -243,7 +224,7 @@ const Signup = ({ }) => {
 
                 </form>
 
-                {/* Login */}
+
                 <p className="text-center text-sm text-gray-600 mt-6"
 
                 >

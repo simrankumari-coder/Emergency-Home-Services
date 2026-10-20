@@ -26,7 +26,7 @@ const Navbar = ({ isLogin, setIsLogin }) => {
   return (
     <nav className="flex justify-between bg-blue-800 px-4 py-4 text-white">
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         <FaHome className="text-xl" />
         <span className="font-bold text-xl">EHS</span>
       </div>
@@ -88,7 +88,7 @@ const Navbar = ({ isLogin, setIsLogin }) => {
           </>
         )}
       </div>
-      {/* Mobile Menu Button */}
+
       <button
         className="md:hidden"
         onClick={() => setMenu(!menu)}

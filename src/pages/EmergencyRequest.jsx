@@ -41,7 +41,7 @@ const EmergencyRequest = () => {
             const technician = technicians.find((item) => {
                 return service === item.service && item.available === true
             })
-            console.log("Assinged technician", technician)
+
 
             const finalResult = { ...emergencyRequest, technician, status: technician ? "Technician Assigned" : "No Technician Assigned" }
             localStorage.setItem("finalResult", JSON.stringify(finalResult))
@@ -60,7 +60,7 @@ const EmergencyRequest = () => {
         <div className="min-h-screen bg-gray-50 py-16 px-6">
             <div className="max-w-4xl mx-auto">
 
-                {/* Heading */}
+
                 <div className="text-center mb-10">
                     <p className="text-blue-600 font-semibold text-sm tracking-wide">
                         EMERGENCY REQUEST
@@ -76,10 +76,10 @@ const EmergencyRequest = () => {
                     </p>
                 </div>
 
-                {/* Form */}
+
                 <div className="bg-white rounded-3xl border border-gray-200 shadow-sm p-8 md:p-10">
 
-                    {/* Service */}
+
                     <div className="mb-6">
                         <label className="block text-sm font-semibold text-slate-800 mb-2">
                             Service Type
@@ -101,7 +101,7 @@ const EmergencyRequest = () => {
 
                     </div>
 
-                    {/* Problem */}
+
                     <div className="mb-6">
                         <label className="block text-sm font-semibold text-slate-800 mb-2">
                             Describe the Problem
@@ -114,7 +114,6 @@ const EmergencyRequest = () => {
                         ></textarea>
                     </div>
 
-                    {/* Name + Phone */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
 
                         <div>
@@ -146,7 +145,7 @@ const EmergencyRequest = () => {
 
                     </div>
 
-                    {/* Address */}
+
                     <div className="mb-6">
                         <label className="block text-sm font-semibold text-slate-800 mb-2">
                             Service Address
@@ -159,7 +158,7 @@ const EmergencyRequest = () => {
                         />
                     </div>
 
-                    {/* Emergency Level */}
+
                     <div className="mb-8">
                         <label className="block text-sm font-semibold text-slate-800 mb-3">
                             Emergency Level
@@ -198,7 +197,7 @@ const EmergencyRequest = () => {
                         </div>
                     </div>
 
-                    {/* Button */}
+
                     <button onClick={handleClick}
                         type="submit"
                         className="w-full bg-blue-600 text-white py-3.5 rounded-xl font-semibold hover:bg-blue-700 transition"

@@ -14,7 +14,7 @@ const TrackService = () => {
     return (
         <div className="min-h-screen bg-gray-50 py-16 px-6">
 
-            {/* Page Heading */}
+
             <div className="text-center mb-10">
                 <p className="text-blue-600 font-semibold text-sm tracking-wide">
                     TRACK SERVICE
@@ -29,7 +29,7 @@ const TrackService = () => {
                 </p>
             </div>
 
-            {/* Request Summary */}
+
             <div className="max-w-2xl mx-auto bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
 
                 <div className="flex flex-col md:flex-row md:justify-between gap-4">
@@ -57,7 +57,7 @@ const TrackService = () => {
                 </div>
             </div>
 
-            {/* Service Information */}
+
             <div className="max-w-2xl mx-auto bg-white border border-gray-200 rounded-2xl p-6 shadow-sm mt-5">
 
                 <h2 className="text-2xl font-bold text-slate-900 mb-5">
@@ -90,7 +90,7 @@ const TrackService = () => {
 
             </div>
 
-            {/* Technician */}
+
             <div className="max-w-2xl mx-auto bg-white border border-gray-200 rounded-2xl p-6 shadow-sm mt-5">
 
                 <h2 className="text-2xl font-bold text-slate-900">
@@ -137,7 +137,7 @@ const TrackService = () => {
 
             </div>
 
-            {/* Service Progress */}
+
             <div className="max-w-2xl mx-auto bg-white border border-gray-200 rounded-2xl p-6 shadow-sm mt-5">
 
                 <h2 className="text-2xl font-bold text-slate-900">
@@ -146,7 +146,7 @@ const TrackService = () => {
 
                 <div className="flex flex-col gap-5 mt-6">
 
-                    {/* Completed */}
+
                     <div className="flex gap-3 items-center">
                         <FaCircleCheck className="text-green-500" />
 
@@ -155,7 +155,7 @@ const TrackService = () => {
                         </span>
                     </div>
 
-                    {/* Completed */}
+
                     <div className="flex gap-3 items-center">
                         <FaCircleCheck className="text-green-500" />
 
@@ -164,7 +164,7 @@ const TrackService = () => {
                         </span>
                     </div>
 
-                    {/* Current */}
+
                     <div className="flex gap-3 items-center">
                         <div className="w-4 h-4 bg-blue-700 rounded-full"></div>
 
@@ -173,7 +173,7 @@ const TrackService = () => {
                         </span>
                     </div>
 
-                    {/* Pending */}
+
                     <div className="flex gap-3 items-center">
                         <div className="w-4 h-4 rounded-full border-2 border-gray-300"></div>
 
@@ -182,7 +182,7 @@ const TrackService = () => {
                         </span>
                     </div>
 
-                    {/* Pending */}
+
                     <div className="flex gap-3 items-center">
                         <div className="w-4 h-4 rounded-full border-2 border-gray-300"></div>
 
@@ -195,7 +195,7 @@ const TrackService = () => {
 
             </div>
 
-            {/* Service Location */}
+
             <div className="max-w-2xl mx-auto bg-white border border-gray-200 rounded-2xl p-6 shadow-sm mt-5">
 
                 <h2 className="text-2xl font-bold text-slate-900">

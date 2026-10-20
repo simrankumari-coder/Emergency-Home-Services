@@ -11,18 +11,16 @@ import { useNavigate } from "react-router";
 const Profile = ({ setIsLogin }) => {
     const navigate = useNavigate();
 
-    // Get currently logged-in account
+
     const user = JSON.parse(
         localStorage.getItem("loggedInUser") || "null"
     );
 
-    // Get saved service requests
     const storedRequest = localStorage.getItem("storeRequest");
     const serviceRequests = storedRequest
         ? JSON.parse(storedRequest)
         : [];
 
-    // Show only this customer's requests
     const myRequests =
         user?.role === "Customer"
             ? serviceRequests.filter(
@@ -89,7 +87,7 @@ const Profile = ({ setIsLogin }) => {
 
             <div className="max-w-4xl mx-auto space-y-5">
 
-                {/* Personal Information */}
+
                 <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
                     <h2 className="text-2xl font-bold text-slate-900 mb-6">
                         Personal Information
@@ -122,10 +120,7 @@ const Profile = ({ setIsLogin }) => {
                         </div>
 
                     </div>
-                </div>
-
-                {/* Account Details */}
-                <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                </div>   <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
                     <h2 className="text-2xl font-bold text-slate-900 mb-5">
                         Account Overview
                     </h2>
@@ -171,7 +166,7 @@ const Profile = ({ setIsLogin }) => {
                     </div>
                 </div>
 
-                {/* Customer Service Requests */}
+
                 {user.role === "Customer" && (
                     <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
                         <h2 className="text-xl font-semibold text-slate-900">
@@ -207,7 +202,7 @@ const Profile = ({ setIsLogin }) => {
                     </div>
                 )}
 
-                {/* Account Actions */}
+
                 <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
                     <h2 className="text-xl font-semibold text-slate-900">
                         Account Actions

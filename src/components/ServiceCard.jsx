@@ -9,7 +9,7 @@ const ServiceCard = ({ id, name, icon, page, description, responseTime, availabi
                 key={id}
                 className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow"
             >
-                {/* Icon + Service Name */}
+
                 <div className="flex items-center gap-4 mb-4">
                     <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center">
                         <Icon />
@@ -26,12 +26,11 @@ const ServiceCard = ({ id, name, icon, page, description, responseTime, availabi
                     </div>
                 </div>
 
-                {/* Description */}
+
                 <p className="text-gray-600 text-sm leading-6 mb-5">
                     {description}
                 </p>
 
-                {/* Service Information */}
                 <div className="space-y-3 border-t border-gray-100 pt-4">
 
                     <div className="flex justify-between items-center">
@@ -50,7 +49,7 @@ const ServiceCard = ({ id, name, icon, page, description, responseTime, availabi
             key={id}
             className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow"
         >
-            {/* Icon + Service Name */}
+
             <div className="flex items-center gap-4 mb-4">
                 <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center">
                     <Icon />
@@ -67,12 +66,12 @@ const ServiceCard = ({ id, name, icon, page, description, responseTime, availabi
                 </div>
             </div>
 
-            {/* Description */}
+
             <p className="text-gray-600 text-sm leading-6 mb-5">
                 {description}
             </p>
 
-            {/* Service Information */}
+
             <div className="space-y-3 border-t border-gray-100 pt-4">
 
                 <div className="flex justify-between">
@@ -105,7 +104,7 @@ const ServiceCard = ({ id, name, icon, page, description, responseTime, availabi
 
             </div>
 
-            {/* Bottom */}
+
             <div className="flex items-center justify-between mt-6 pt-5 border-t border-gray-100">
                 <div>
                     <p className="text-xs text-gray-500">Starting from</p>
