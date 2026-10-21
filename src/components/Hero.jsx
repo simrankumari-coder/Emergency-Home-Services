@@ -12,18 +12,23 @@ const Hero = () => {
                     <h1 className='lg:text-5xl text-2xl text-blue-800 mt-4 font-bold'>Get Help at Home , Right When You Need It.</h1>
                     <p className='lg:text-lg text-sm text-slate-600 mt-6'>Request a service and get connected with an availble technician near you.</p>
                     <div className="flex flex-col lg:flex-row gap-4 mt-8">
+                        {!loggedUser && (
+                            <Link to="/signup" className='bg-blue-800 text-white px-6 py-3 rounded-lg text-center hover:bg-blue-900 transition'>Get Started</Link>
+                        )}
                         {loggedUser?.role === "Customer" && (
                             <>
-
+                                <Link to="request-service">
+                                    <button className='bg-blue-800 text-white px-6 py-3 rounded-lg text-center hover:bg-blue-900 transition'>Request Service</button>
+                                </Link>
                                 <Link to="track-service">
-                                    <button className='border border-slate-400 text-slate-700 px-6 py-3 rounded-lg'>Track the Service</button>
+                                    <button className='border border-slate-400 text-slate-700 px-6 py-3 rounded-lg hover:bg-slate-100 transition'>Track the Service</button>
                                 </Link>
 
                             </>
                         )}
                         {loggedUser?.role === "Technician" && (
-                            <Link to="technician-dashboard">
-                                <button className='bg-red-600 text-white px-6 py-3 rounded-lg'>Go to Technician Dashboard</button>
+                            <Link to="technician-dashboard" className='bg-blue-800 text-white px-6 py-3 rounded-lg text-center hover:bg-blue-900 transition'
+                            >Go to Technician Dashboard
                             </Link>
 
                         )}
